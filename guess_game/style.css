@@ -1,0 +1,39 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merienda&family=STIX+Two+Text&display=swap');
+
+
+html{
+    font-size: 10px;
+}
+
+body{
+    font-size: 1.6rem;
+    margin: 0 auto;
+    font-family: 'STIX Two Text', serif, sans-serif;
+}
+
+header{
+    font-size: 4rem;
+    font-family: 'Merienda', cursive, Verdana;
+    text-align: center;
+
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button{
+    padding: 10px;
+}
+
+#checkBtn:hover{
+
+    transition-duration: 0.5s;
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+}
