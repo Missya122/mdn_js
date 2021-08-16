@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        .deleteBtn {
+            margin: 10px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>My shopping list</h1>
+    <p></p>
+    <section>
+        <label for="input">Enter a new item: </label>
+        <input type="text" id="input">
+        <button>Add item</button>
+        <ul></ul>
+    </section>
+
+</body>
+<script>
+    const input = document.querySelector('#input');
+    const btn = document.querySelector('button');
+    const sct = document.querySelector('section');
+    const list = document.querySelector('ul');
+    const p = document.querySelector('p');
+    // const div = document.querySelector('div');
+
+    btn.addEventListener('click', addItem);
+
+    function addItem() {
+
+
+        if (input.value !== '') {
+
+
+            const listItem = document.createElement('li');
+            const btnDelete = document.createElement('button');
+            const btnModify = document.createElement('button');
+            const span = document.createElement('span');
+
+            btnDelete.classList.add('deleteBtn');
+
+            btnDelete.textContent = 'Delete';
+            btnModify.textContent = 'Modify';
+            span.textContent = input.value;
+
+            sct.appendChild(listItem);
+
+            listItem.appendChild(span);
+            listItem.appendChild(btnDelete);
+            listItem.appendChild(btnModify);
+
+            btnDelete.addEventListener('click', function () {
+                listItem.removeChild(span);
+                listItem.removeChild(btnDelete);
+                sct.removeChild(listItem);
+            });
+
+            btnModify.addEventListener('click', function () {
+                if (btnModify.textContent !== 'OK') {
+                    const inputModify = document.createElement('input');
+                    inputModify.placeholder = 'Enter a new value';
+                    listItem.appendChild(inputModify);
+                    inputModify.focus();
+                    btnModify.textContent = 'OK';
+
+                    btnModify.addEventListener('click', function () {
+                    if (inputModify.value !== '') {
+                        span.textContent = inputModify.value;
+                        listItem.removeChild(inputModify);
+                        btnModify.textContent = 'Modify';
+                    }
+
+                });
+                }
+                
+            });
+
+            input.value = '';
+
+            if (p.textContent !== '') {
+                p.textContent = '';
+            }
+
+        } else {
+            p.style.color = 'red';
+            p.textContent = 'Enter an item first!';
+
+            document.body.appendChild(p);
+            input.focus();
+        }
+    }
+</script>
+
+</html>
