@@ -66,17 +66,30 @@
             btnModify.addEventListener('click', function () {
                 if (btnModify.textContent !== 'OK') {
                     const inputModify = document.createElement('input');
+                    const btnCancel = document.createElement('button');
+
+                    btnModify.textContent = 'OK';
+                    btnCancel.textContent = 'Cancel';
+
                     inputModify.placeholder = 'Enter a new value';
                     listItem.appendChild(inputModify);
+                    listItem.appendChild(btnCancel);
                     inputModify.focus();
-                    btnModify.textContent = 'OK';
+                   
+                    btnCancel.addEventListener('click', function () {
+                        listItem.removeChild(inputModify);
+                        listItem.removeChild(btnCancel);
+                        btnModify.textContent = 'Modify';
+                    
+                    });
 
                     btnModify.addEventListener('click', function () {
                     if (inputModify.value !== '') {
                         span.textContent = inputModify.value;
                         listItem.removeChild(inputModify);
+                        listItem.removeChild(btnCancel);
                         btnModify.textContent = 'Modify';
-                    }
+                    };
 
                 });
                 }
